@@ -1,0 +1,32 @@
+{% extends "default.html" %}
+
+{% block main %}
+<main aria-label="Content">
+  <div class="container">
+    <header class="header">
+      <h1>{{ this.title | markdown | safe }}</h1>
+    </header>
+    <div class="content" itemprop="articleBody" id="content">
+      {% for year, group in this.pages | sort(attribute="date") | reverse |  group_by(attribute="year") %}
+        <hr>
+        <h2>{{year}}</h2>
+        {% for article in group %}
+          <div class="article">
+            <h3>{{ article.title }}</h3>
+            <div class="article-body">
+              <div class="article-authors">by {% for author in article.authors %}
+                {{ author }}{% if not loop.last %}, {% endif %}
+              {% endfor %}
+              {% if article.extra.venue %}in {{ article.extra.venue }}{% endif %}
+              </div>
+              {% for link in article.extra.links %}
+                [<a href="{{ link.url }}">{{ link.name }}</a>]
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</main>
+{% endblock main %}

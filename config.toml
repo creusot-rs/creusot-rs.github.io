@@ -1,0 +1,13 @@
+# The URL the site will be built for
+base_url = "https://creusot-rs.github.io"
+
+[markdown]
+
+[markdown.highlighting]
+theme = "catppuccin-mocha"
+
+[extra]
+favicon = true
+logo = "creusot-logo.jpg"
+footer_text = "This website is built using [Zola](https://www.getzola.org) with a theme based on [Academic Paper](http://github.com/aterenin/academic-paper/)."
+version = "0.9.0"

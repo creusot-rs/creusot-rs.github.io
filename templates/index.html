@@ -1,0 +1,59 @@
+{% import "macros/icons.html" as icons %}
+
+{% extends "default.html" %}
+
+{% block main %}
+<main aria-label="Content">
+    <div class="container">
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="header">
+                <img class="logo" alt="Creusot Logo" src="{{ config.extra.logo }}" width="200">
+                
+                <h1 itemprop="name headline">{{ this.title }}</h1>
+                <h2>
+                    <span itemprop="author">
+                        {% for author in this.extra.authors %}
+                            <a href="{{ author.url | default(value = this.path ~ '#') | safe }}">
+                                {{- author.name -}}
+                            </a>
+                            {%- if not loop.last -%}
+                                &comma;
+                            {%- endif -%}
+                            {%- if author.contribution -%}
+                                <sup><small>*</small></sup>
+                            {%- endif -%}
+                            {%- if not loop.last -%}
+                                &#32;
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                </h2>
+                {% if this.extra.contribution %}
+                    <p>
+                        <sup><small>*</small></sup>{{ this.extra.contribution }}
+                    </p>
+                {% endif %}
+                <div>
+                    {% for button in this.extra.buttons %}
+                        <a class="btn" href="{{ button.url | safe }}">
+                            {% if not button.no_icon %}
+                                {{- icons::icon(name = button.icon | lower) -}}
+                                &nbsp;
+                            {% endif %}
+                            {{- button.name -}}
+                        </a>
+                    {% endfor %}
+                </div>
+                <div>
+                  Version {{ config.extra.version }}
+                </div>
+            </header>
+        
+            <div class="content" itemprop="articleBody" id="content">
+                {{ this.content | safe }}
+            </div>
+        </article>
+    </div>
+</main>
+{% endblock main %}

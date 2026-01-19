@@ -1,0 +1,46 @@
+{% set this = page | default(value = section) %}
+{% set url = get_url(path = this.path, trailing_slash = true) %}
+{% set card_file = page.extra.logo | default(value = 'card.png') %}
+{% set card = get_url(path = this.path ~ card_file) %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{{ get_url(path = 'main.css') | safe }}">
+
+        {% if this.extra.favicon %}
+            <link rel="shortcut icon" type="image/x-icon" href="{{ get_url(path = 'favicon.ico') }}">
+            {# <link rel="apple-touch-icon" href="{{ get_url(path = 'apple-touch-icon.png') }}" type="image/png"> #}
+        {% endif %}
+        <title>{{ this.title }}</title>
+
+        <meta property="og:title" content="{{ this.title }}">
+        {% if page.description %}
+            <meta name="description" content="{{ page.description }}">
+            <meta property="og:description" content="{{ page.description }}">
+        {% endif %}
+        <link rel="canonical" href="{{ url | safe }}">
+        <meta property="og:url" content="{{ url | safe }}">
+        <meta property="og:image" content="{{ card | safe }}">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:type" content="article">
+        {% block head_includes %}{% endblock head_includes %}
+        {% if this.extra.head_includes %}{{ this.extra.head_includes | safe }}{% endif %}
+    </head>
+
+    <body>
+      {% block main %}{% endblock main %}
+      {% block footer %}
+        {% if config.extra.footer_text %}
+          <footer class="footer">
+            {{ config.extra.footer_text | markdown | safe }}
+          </footer>
+        {% endif %}
+      {% endblock %}
+    </body>
+
+</html>

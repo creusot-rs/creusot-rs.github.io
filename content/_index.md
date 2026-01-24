@@ -31,7 +31,7 @@ enabling you to specify the expected functional behavior of functions.
 
 - **Prophecies**: the flexible logical model of mutable borrows at the core of Creusot.
 
-- **Ghost ownership**: a technique for verifying code featuring interior mutability, notably `Cell`, raw pointers, and atomic variables.
+- **Ghost ownership**: a technique for verifying code featuring interior mutability, including raw pointers and atomic variables.
 
 - **Termination checking**: prove that your programs terminate using variants and well-founded relations.
 
@@ -68,7 +68,7 @@ pub fn sum_first_n(n: u32) -> u32 {
 # How it works
 
 Creusot leverages the Why3 Platform for program verification.
-Creusot compiles Rust programs to [Coma, an intermediate verification language](https://coma.paulpatault.fr/), from which Why3 generates verification conditions (via weakest preconditions) to be dispatched to SMT solvers.
+Creusot compiles Rust programs to [Coma, an intermediate verification language](https://coma.paulpatault.fr/), from which Why3 generates verification conditions to be dispatched to SMT solvers.
 
 # Credits
 
@@ -83,12 +83,12 @@ Creusot is powered by the following projects:
     - [Z3](https://github.com/Z3Prover/z3)
     - [CVC5](https://cvc5.github.io/), [CVC4](https://cvc4.github.io/)
 
-# Similar tools
+# A big family
 
 Creusot is but one in a long line of formal verification tools,
 going all the way back to the fundamental idea of [Floyd-Hoare logic](https://en.wikipedia.org/wiki/Hoare_logic).
 
-The following is not an exhaustive list of such tools.
+The following is not an exhaustive list of related tools.
 
 For Rust:
 

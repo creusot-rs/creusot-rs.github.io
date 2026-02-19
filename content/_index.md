@@ -13,7 +13,7 @@ buttons = [
 large_card = false
 +++
 
-# Deductive verification for Rust
+# Contracts for Rust, formally proved
 
 Creusot helps you verify that your code is free of errors—panics, overflows, undefined behaviors, *etc.*—by proving that it conforms
 to a formal specification.

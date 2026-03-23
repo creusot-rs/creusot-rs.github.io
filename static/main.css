@@ -223,6 +223,9 @@ img {
     p {
         text-align: justify;
     }
+    p, pre {
+        margin-left: 30px;
+    }
     blockquote {
         border-left: 4px solid color-mix(in srgb, var(--color-secondary), var(--color-white) 25%);
         padding-left: 1rem;

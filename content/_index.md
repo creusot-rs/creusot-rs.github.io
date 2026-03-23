@@ -25,29 +25,66 @@ by connecting code to specifications with mathematically rigorous proofs.
 
 In Creusot, you will find the true meaning of "*if it compiles, it works*."
 
-# Features
+# Features & Examples
 
-- **Prophecies**: the logical model that powers Creusot's first-class support for mutable borrows
+## Prophecies
+
+Prophecies are the logical model that powers Creusot's first-class support for mutable borrows
 while preserving the simplicity of first-order logic (as opposed to separation logic).
 
-- **Pearlite**: the rich language of contracts in Creusot in which you specify the expected functional behavior of functions.
+```rust
+// Choose an integer depending on a boolean
+#[ensures(
+    if b { result == x && ^y == *y }
+    else { result == y && ^x == *x }
+)]
+pub fn choose<'a, T>(b: bool, x: &'a mut T, y: &'a mut T) -> &'a mut T {
+    if b { x } else { y }
+}
+```
 
-- **Termination checking**: prove that your programs terminate using variants and well-founded relations.
+## Pearlite
 
-- **Ghost ownership**: a technique for verifying code featuring interior mutability, raw pointers, and/or atomics.
-
-- **Automated solvers**: Creusot uses off-the-shelf SMT solvers to prove verification conditions. Multiple solvers can be used to leverage their respective strengths.
-
-# Examples
-
-## Sum from 1 to n
+Pearlite is the rich language of contracts in Creusot in which you specify the expected functional behavior of functions.
 
 ```rust
+// A sequence is sorted
+#[logic(open)]
+pub fn is_sorted<T>(s: Seq<T>) -> bool
+where
+    T: DeepModel,
+    T::DeepModelTy: OrdLogic,
+{
+    pearlite! {
+        forall<i: Int, j: Int> 0 <= i && i < j && j < s.len() ==> s[i].deep_model() <= s[j].deep_model()
+    }
+}
+
+// Contract for sorting
+#[ensures(is_sorted((^s)@))]
+#[ensures((^s)@.is_permutation((*s)@))]
+pub fn sort<T>(s: &mut [T])
+where
+    T: DeepModel,
+    T::DeepModelTy: OrdLogic,
+{
+    // ...
+}
+```
+
+## Termination checking
+
+Prove that your programs terminate using variants and well-founded relations.
+
+```rust
+// Sum from 1 to n
+#[check(terminates)]
 #[requires(n@ * (n@ + 1) / 2 <= u32::MAX@)]
 #[ensures(result@ == n@ * (n@ + 1) / 2)]
 pub fn sum_first_n(n: u32) -> u32 {
     let mut sum = 0;
     let mut i = 0;
+    #[variant(n@ - i@)]
     #[invariant(sum@ == i@ * (i@ + 1) / 2)]
     #[invariant(i@ <= n@)]
     while i < n {
@@ -58,17 +95,17 @@ pub fn sum_first_n(n: u32) -> u32 {
 }
 ```
 
-## Reasoning about mutable borrows
+## Ghost ownership
+
+A technique for verifying code featuring interior mutability, raw pointers, and/or atomics.
 
 ```rust
-#[ensures(
-    if b { result == x && ^y == *y }
-    else { result == y && ^x == *x }
-)]
-pub fn choose<'a, T>(b: bool, x: &'a mut T, y: &'a mut T) -> &'a mut T {
-    if b { x } else { y }
-}
+// ...
 ```
+
+## Automated solvers
+
+Creusot uses off-the-shelf SMT solvers to prove verification conditions. Multiple solvers can be used to leverage their respective strengths. Not everything can be automated, of course. To make this method work, you still have to annotate functions with contracts and loops with loop invariants.
 
 # How it works
 

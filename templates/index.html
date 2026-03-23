@@ -6,10 +6,8 @@
 <main aria-label="Content">
     <div class="container">
         <article itemscope itemtype="http://schema.org/BlogPosting">
-
             <header class="header">
                 <img class="logo" alt="Creusot Logo" src="{{ config.extra.logo }}" width="200">
-                
                 <h1 itemprop="name headline">{{ this.title }}</h1>
                 <h2>
                     <span itemprop="author">
@@ -49,7 +47,6 @@
                   Version {{ config.extra.version }}
                 </div>
             </header>
-        
             <div class="content" itemprop="articleBody" id="content">
                 {{ this.content | safe }}
             </div>

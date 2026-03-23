@@ -1,0 +1,20 @@
+{% import "macros/icons.html" as icons %}
+
+{% extends "default.html" %}
+
+{% block main %}
+<main aria-label="Content">
+    <div class="container">
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="header">
+                <h1 itemprop="name headline">{{ this.title }}</h1>
+            </header>
+
+            <div class="content" itemprop="articleBody" id="content">
+                {{ this.content | safe }}
+            </div>
+        </article>
+    </div>
+</main>
+{% endblock main %}

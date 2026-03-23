@@ -27,10 +27,10 @@ In Creusot, you will find the true meaning of "*if it compiles, it works*."
 
 # Features
 
-- **Pearlite**: the rich language of contracts in Creusot in which you specify the expected functional behavior of functions.
-
 - **Prophecies**: the logical model that powers Creusot's first-class support for mutable borrows
 while preserving the simplicity of first-order logic (as opposed to separation logic).
+
+- **Pearlite**: the rich language of contracts in Creusot in which you specify the expected functional behavior of functions.
 
 - **Termination checking**: prove that your programs terminate using variants and well-founded relations.
 

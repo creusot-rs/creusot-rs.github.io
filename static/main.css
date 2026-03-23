@@ -223,8 +223,10 @@ img {
     p {
         text-align: justify;
     }
-    p, pre {
-        margin-left: 30px;
+    @media only screen and (min-width: 768px) {
+        p, pre {
+            margin-left: 30px;
+        }
     }
     blockquote {
         border-left: 4px solid color-mix(in srgb, var(--color-secondary), var(--color-white) 25%);
@@ -237,7 +239,10 @@ img {
         background-color: var(--color-white);
         padding: 0.75rem;
         margin-bottom: 1rem;
-        white-space: pre-wrap;
+        display:flex;
+        flex-direction:column;
+        overflow-x:auto;
+        overflow-y:clip;
     }
     h1:has(+ .footnote-definition) {
         font-size: 1.375rem;

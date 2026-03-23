@@ -38,7 +38,11 @@ while preserving the simplicity of first-order logic (as opposed to separation l
     if b { result == x && ^y == *y }
     else { result == y && ^x == *x }
 )]
-pub fn choose<'a, T>(b: bool, x: &'a mut T, y: &'a mut T) -> &'a mut T {
+pub fn choose<'a, T>(
+    b: bool,
+    x: &'a mut T,
+    y: &'a mut T,
+) -> &'a mut T {
     if b { x } else { y }
 }
 ```
@@ -56,7 +60,9 @@ where
     T::DeepModelTy: OrdLogic,
 {
     pearlite! {
-        forall<i: Int, j: Int> 0 <= i && i < j && j < s.len() ==> s[i].deep_model() <= s[j].deep_model()
+        forall<i: Int, j: Int>
+            0 <= i && i < j && j < s.len()
+            ==> s[i].deep_model() <= s[j].deep_model()
     }
 }
 

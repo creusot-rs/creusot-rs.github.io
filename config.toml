@@ -1,6 +1,9 @@
 # The URL the site will be built for
 base_url = "https://creusot.rs"
 
+title = "Creusot"
+description = "Formal verification tool for Rust"
+
 [markdown]
 
 [markdown.highlighting]

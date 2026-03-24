@@ -19,15 +19,14 @@
         <title>{{ this.title }}</title>
 
         <meta property="og:title" content="{{ this.title }}">
-        {% if page.description %}
-            <meta name="description" content="{{ page.description }}">
-            <meta property="og:description" content="{{ page.description }}">
-        {% endif %}
+        {% set description = page.description | default(value = config.description) %}
+        <meta name="description" content="{{ description }}">
+        <meta property="og:description" content="{{ description }}">
         <link rel="canonical" href="{{ url | safe }}">
         <meta property="og:url" content="{{ url | safe }}">
         <meta property="og:image" content="{{ card | safe }}">
         <meta property="og:image:type" content="image/jpg">
-        <meta property="og:type" content="article">
+        <meta property="og:type" content="website">
         <meta property="og:image:alt" content="The Creusot logo">
         {% block head_includes %}{% endblock head_includes %}
         {% if this.extra.head_includes %}{{ this.extra.head_includes | safe }}{% endif %}

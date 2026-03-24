@@ -1,5 +1,6 @@
 +++
 title = "Related projects"
+description = "Projects related to Creusot"
 +++
 
 # Credits

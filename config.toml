@@ -4,7 +4,9 @@ base_url = "https://creusot-rs.github.io"
 [markdown]
 
 [markdown.highlighting]
-theme = "catppuccin-mocha"
+style = "class"
+light_theme = "one-light"
+dark_theme = "catppuccin-mocha"
 
 [extra]
 favicon = true

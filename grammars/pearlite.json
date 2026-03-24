@@ -1,0 +1,193 @@
+{
+    "name": "source.pearlite",
+    "scopeName": "source.pearlite",
+    "patterns": [
+        { "include": "#expr" }
+    ],
+    "comment-reference": "https://github.com/dustypomerleau/rust-syntax/blob/main/syntaxes/rust.tmLanguage.json",
+    "repository": {
+        "expr": {
+            "patterns": [
+                { "include": "#line-comments" },
+                { "include": "#block-comments" },
+                { "include": "#keyword" },
+                { "include": "#other-keyword" },
+                { "include": "#mut" },
+                { "include": "#constructor"},
+                { "include": "#quantifier" },
+                { "include": "#braces" },
+                { "include": "#parentheses" },
+                { "include": "#brackets" },
+                { "include": "#self" },
+                { "include": "#function" },
+                { "include": "#namespace" },
+                { "include": "#identifier" },
+                { "include": "#number" },
+                { "include": "#char" },
+                { "include": "#special" }
+            ]
+        },
+        "special": {
+            "match": "\\|\\||&&|==>|==|!=|<=|>=|[@*^&<>/!-]",
+            "name": "keyword.operator"
+        },
+        "keyword": {
+            "match": "\\b(?:if|else|match)\\b",
+            "name": "keyword.control"
+        },
+        "mut": {
+            "match": "\\bmut\\b",
+            "name": "storage.modifier"
+        },
+        "other-keyword": {
+            "match": "\\b(:?let|const|as)\\b",
+            "name": "storage.type.rust"
+        },
+        "constant": {
+            "match": "\\b(?:true|false)\\b",
+            "name": "constant.language"
+        },
+        "quantifier": {
+            "begin": "(forall|exists)\\s*<",
+            "end":  ">",
+            "beginCaptures": {
+                "1": { "name": "keyword.control" }
+            },
+            "patterns": [
+                { "include": "#type" },
+                { "include": "#identifier" }
+            ]
+        },
+        "braces": {
+            "begin": "{",
+            "end": "}",
+            "beginCaptures": {
+                "0": { "name": "punctuation.brackets.curly.rust" }
+            },
+            "endCaptures": {
+                "0": { "name": "punctuation.brackets.curly.rust" }
+            },
+            "patterns": [
+                { "include": "#expr" }
+            ]
+        },
+        "parentheses": {
+            "begin": "\\(",
+            "end": "\\)",
+            "beginCaptures": {
+                "0": { "name": "punctuation.brackets.round.rust" }
+            },
+            "endCaptures": {
+                "0": { "name": "punctuation.brackets.round.rust" }
+            },
+            "patterns": [
+                { "include": "#expr" }
+            ]
+        },
+        "brackets": {
+            "begin": "\\[",
+            "end": "\\]",
+            "beginCaptures": {
+                "0": { "name": "punctuation.brackets.square.rust" }
+            },
+            "endCaptures": {
+                "0": { "name": "punctuation.brackets.square.rust" }
+            },
+            "patterns": [
+                { "include": "#expr" }
+            ]
+        },
+        "angle-brackets": {
+            "begin": "<",
+            "end": ">",
+            "beginCaptures": {
+                "0": { "name": "punctuation.brackets.angle.rust" }
+            },
+            "endCaptures": {
+                "0": { "name": "punctuation.brackets.angle.rust" }
+            },
+            "patterns": [
+                { "include": "#type" }
+            ]
+        },
+        "type": {
+            "patterns": [
+                { "include": "#typename" },
+                { "include": "#stdtype" },
+                { "include": "#generic-type" },
+                { "include": "#angle-brackets" },
+                {
+                    "match": "\\b(?:mut|const)\\b",
+                    "name": "storage.modifier"
+                },
+                {
+                    "match": "&",
+                    "name": "keyword.operator"
+                }
+            ]
+        },
+        "constructor": {
+            "patterns": [ { "include": "#typename" } ]
+        },
+        "typename": {
+            "match": "\\b_?[A-Z][A-Za-z0-9_]*\\b(?!!)",
+            "name": "entity.name.type.rust"
+        },
+        "stdtype": {
+            "match": "(?<![A-Za-z])(?:f32|f64|i8|i16|i32|i64|u8|u16|u32|u64|isize|usize|char|str)\\b",
+            "name": "entity.name.type.numeric.rust"
+        },
+        "generic-type": {
+            "begin": "\\b(_?[A-Z][A-Za-z0-9_]*)\\s*<",
+            "end": ">",
+            "beginCaptures": {
+                "1": { "name": "entity.name.type.rust" }
+            },
+            "patterns": [
+                { "include": "#type" }
+            ]
+        },
+        "self": {
+            "match": "\\b[sS]elf\\b",
+            "name": "variable.language.self.rust"
+        },
+        "function": {
+            "match": "\\b[a-zA-Z][a-zA-Z0-9_']*\\b(?=(?:\\(|::<))",
+            "name": "entity.name.function.pearlite"
+        },
+        "namespace": {
+            "match": "\\b[a-zA-Z][a-zA-Z0-9_']*\\b(?=::[^a-zA-Z])",
+            "name": "entity.name.namespace.pearlite"
+        },
+        "identifier": {
+            "match": "\\b[a-zA-Z][a-zA-Z0-9_']*\\b",
+            "name": "variable"
+        },
+        "number": {
+            "match": "\\b(?:[0-9]+|0x[0-9a-fA-F]+)(?:int|[ui](?:8|16|32|64|128|256|size))?\\b",
+            "name": "constant.numeric"
+        },
+        "char": {
+            "match": "'(?:[^'\\\\\n\r\t]|\\\\['\"nrt\\0]|\\\\x[0-7][0-9a-fA-F]|\\\\u\\{(?:[0-9a-fA-F]_*){,6}\\})'",
+            "name": "string.quoted.single.pearlite"
+        },
+        "line-comments": {
+            "match": "//[^\\n]*",
+            "name": "comment.line.double-slash"
+        },
+        "block-comments": {
+            "begin": "/\\*",
+            "end": "\\*/",
+            "beginCaptures": {
+                "0": { "name": "comment.block.begin" }
+            },
+            "endCaptures": {
+                "0": { "name": "comment.block.end" }
+            },
+            "contentName": "comment.block",
+            "patterns": [
+                { "include": "#block-comments" }
+            ]
+        }
+    }
+}

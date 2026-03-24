@@ -9,7 +9,7 @@
     --color-text: light-dark(#212529, #c2d4e6);
     --color-link: light-dark(#007bff, #3898ff);
     --color-btn: #343a40;
-    --color-border: #dee2e6;
+    --color-border: light-dark(#dee2e6, #343a40);
     --color-selection: #dee2e6;
 }
 
@@ -246,12 +246,12 @@ img {
         }
     }
     blockquote {
-        border-left: 4px solid color-mix(in srgb, var(--color-secondary), var(--color-white) 25%);
+        border-left: 4px solid var(--color-border);
         padding-left: 1rem;
         font-style: italic;
     }
     pre {
-        border: 1px solid color-mix(in srgb, var(--color-secondary), var(--color-white) 87.5%);
+        border: 1px solid var(--color-border);
         border-radius: 0.25rem;
         padding: 0.75rem;
         margin-bottom: 1rem;

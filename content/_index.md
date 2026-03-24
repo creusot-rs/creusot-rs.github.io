@@ -36,7 +36,7 @@ Prophecies are the logical model that powers Creusot's first-class support for m
 //
 // This specification says that the `result` is indeed `x` or `y`,
 // but also that the other value is unchanged:
-// the final value `^y` equals the initial value`*y`.
+// the prophecy (final value) `^y` equals the initial value `*y`.
 #[ensures(
     if b { result == x && ^y == *y }
     else { result == y && ^x == *x }
@@ -152,7 +152,9 @@ Full example: [`linked_list.rs`](https://github.com/creusot-rs/creusot/blob/mast
 ## Automated solvers
 
 Creusot calls off-the-shelf SMT solvers to prove verification conditions.
-Multiple solvers can be used to leverage their respective strengths. Not everything can be automated, of course. To make this method work, you still have to annotate functions with contracts and loops with loop invariants.
+Multiple solvers can be used to leverage their respective strengths.
+Not everything can be automated, of course. To make this method work, you still have to annotate functions with contracts and loops with loop invariants.
+Automation takes care of proving simple goals immediately, letting you focus on the proof obligations that matter.
 
 ## And more
 
@@ -171,7 +173,7 @@ From our gallery of [examples](https://github.com/creusot-rs/creusot/blob/master
 
 - [Persistent array](https://github.com/creusot-rs/creusot/blob/master/examples/persistent_array.rs)
 
-- [Left pad](https://github.com/creusot-rs/creusot/blob/master/examples/hillel.rs) (from Hillel's [*Great theorem prover showdown*](https://www.hillelwayne.com/post/theorem-prover-showdown/))
+- [Left pad](https://github.com/creusot-rs/creusot/blob/master/examples/hillel.rs) (from Hillel Wayne's [*Great theorem prover showdown*](https://www.hillelwayne.com/post/theorem-prover-showdown/))
 
 # How it works
 

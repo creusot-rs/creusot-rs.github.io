@@ -255,11 +255,13 @@
       },
       "name": "meta.attribute.rust",
       "patterns": [
-        { "begin": "\\b(ensures|requires|invariant|variant)\\s*\\(",
+        { "begin": "\\b(ensures|requires|invariant|variant)\\s*(\\()",
           "end": "\\)",
           "beginCaptures": {
-            "1": { "name": "keyword" }
+            "1": { "name": "keyword" },
+            "2": { "name": "punctuation" }
           },
+          "endCaptures": { "0": { "name": "punctuation" } },
           "patterns": [
             { "match": "result", "name": "keyword" },
             { "include": "source.pearlite" }
@@ -890,12 +892,16 @@
     },
     "macros": {
       "patterns": [{
-            "begin": "\\b(proof_assert|pearlite|snapshot)\\s*(!)\\s*\\{",
+            "begin": "\\b(proof_assert|pearlite|snapshot)\\s*(!)\\s*(\\{)",
             "end": "\\}",
             "contentName": "meta.embedded.macro.pearlite source.pearlite",
             "beginCaptures": {
                 "1": { "name": "keyword" },
-                "2": { "name": "keyword" }
+                "2": { "name": "keyword" },
+                "3": { "name": "punctuation" }
+            },
+            "endCaptures": {
+                "0": { "name": "punctuation" }
             },
             "patterns": [
                 { "include": "source.pearlite" }
@@ -907,7 +913,11 @@
             "contentName": "meta.embedded.macro.pearlite source.pearlite",
             "beginCaptures": {
                 "1": { "name": "keyword" },
-                "2": { "name": "keyword" }
+                "2": { "name": "keyword" },
+                "3": { "name": "punctuation" }
+            },
+            "endCaptures": {
+                "0": { "name": "punctuation" }
             },
             "patterns": [
                 { "include": "source.pearlite" }
@@ -919,7 +929,11 @@
             "contentName": "meta.embedded.macro.pearlite source.pearlite",
             "beginCaptures": {
                 "1": { "name": "keyword" },
-                "2": { "name": "keyword" }
+                "2": { "name": "keyword" },
+                "3": { "name": "punctuation" }
+            },
+            "endCaptures": {
+                "0": { "name": "punctuation" }
             },
             "patterns": [
                 { "include": "source.pearlite" }

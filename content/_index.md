@@ -154,9 +154,27 @@ Full example: [`linked_list.rs`](https://github.com/creusot-rs/creusot/blob/mast
 Creusot calls off-the-shelf SMT solvers to prove verification conditions.
 Multiple solvers can be used to leverage their respective strengths. Not everything can be automated, of course. To make this method work, you still have to annotate functions with contracts and loops with loop invariants.
 
+## And more
+
+- [CreuSAT: a verified SAT solver](https://github.com/sarsko/CreuSAT)
+
+From our gallery of [examples](https://github.com/creusot-rs/creusot/blob/master/examples):
+
+- Verified sort implementations
+
+    - [Insertion sort](https://github.com/creusot-rs/creusot/blob/master/examples/insertion_sort.rs)
+    - [Selection sort](https://github.com/creusot-rs/creusot/blob/master/examples/selection_sort_generic.rs)
+    - [Heap sort](https://github.com/creusot-rs/creusot/blob/master/examples/heapsort_generic.rs)
+    - [Gnome sort](https://github.com/creusot-rs/creusot/blob/master/examples/gnome_sort.rs)
+
+- [Union-find](https://github.com/creusot-rs/creusot/blob/master/examples/union_find_full.rs)
+
+- [Persistent array](https://github.com/creusot-rs/creusot/blob/master/examples/persistent_array.rs)
+
+- [Left pad](https://github.com/creusot-rs/creusot/blob/master/examples/hillel.rs) (from Hillel's [*Great theorem prover showdown*](https://www.hillelwayne.com/post/theorem-prover-showdown/))
+
 # How it works
 
-Creusot leverages the Why3 Platform for program verification.
-Creusot compiles Rust programs to [Coma, an intermediate verification language](https://coma.paulpatault.fr/), from which Why3 generates verification conditions to be dispatched to SMT solvers.
+Creusot compiles Rust programs to [Coma, an intermediate verification language](https://coma.paulpatault.fr/), then leverages the [Why3 Platform](https://why3.org) to generate verification conditions to be dispatched to SMT solvers. See our [papers](./research) for more details.
 
 # [Related projects](./related-projects)

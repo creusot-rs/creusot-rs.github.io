@@ -1,0 +1,25 @@
+name: Bump the version number
+on:
+  schedule:
+  - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    environment: bump
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v6
+    - name: Bump
+      run: |
+        if CREUSOT_VERSION=$(sh bump.sh) ; then
+          echo "creusot_version=$CREUSOT_VERSION" >> $GITHUB_ENV
+          echo "push=true" >> $GITHUB_ENV
+        fi
+    - name: Push
+      if: env.push
+      run: |
+        git -c user.name="${{ vars.AUTHOR }}" -c user.email="${{ vars.EMAIL }}" commit config.toml -m "chore: Bump project version to ${{ env.creusot_version }}"
+        git push https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}

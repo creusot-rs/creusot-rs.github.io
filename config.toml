@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://creusot-rs.github.io"
+base_url = "https://creusot.rs"
 
 [markdown]
 

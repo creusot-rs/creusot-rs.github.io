@@ -158,7 +158,7 @@ Automation takes care of proving simple goals immediately, letting you focus on 
 
 ## And more
 
-- [CreuSAT: a verified SAT solver](https://github.com/sarsko/CreuSAT)
+- [CreuSAT: a verified SAT solver in Creusot](https://github.com/sarsko/CreuSAT)
 
 From our gallery of [examples](https://github.com/creusot-rs/creusot/blob/master/examples):
 

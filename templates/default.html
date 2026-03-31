@@ -9,15 +9,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="stylesheet" href="{{ get_url(path = 'main.css') | safe }}">
-
+        <link id="giallo-css" rel="stylesheet" href="{{ get_url(path = 'giallo.css') }}">
         {% if this.extra.favicon %}
             <link rel="shortcut icon" type="image/x-icon" href="{{ get_url(path = 'favicon.ico') }}">
             {# <link rel="apple-touch-icon" href="{{ get_url(path = 'apple-touch-icon.png') }}" type="image/png"> #}
         {% endif %}
         <title>{{ this.title }}</title>
-
         <meta property="og:title" content="{{ this.title }}">
         {% set description = page.description | default(value = config.description) %}
         <meta name="description" content="{{ description }}">
@@ -31,7 +29,6 @@
         {% block head_includes %}{% endblock head_includes %}
         {% if this.extra.head_includes %}{{ this.extra.head_includes | safe }}{% endif %}
     </head>
-
     <body>
       {% block main %}{% endblock main %}
       {% block footer %}

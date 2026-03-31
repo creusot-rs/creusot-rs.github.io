@@ -1,0 +1,51 @@
+{% import "macros/icons.html" as icons %}
+<div class="theme-toggle">
+  <a class="content btn" aria-label="Toggle dark theme">
+    <span class="icon"></span>
+  </a>
+</div>
+<script>
+    // base
+    const htmlClass = document.documentElement.classList;
+    const gialloCss = document.getElementById('giallo-css');
+    setTimeout(() => {
+      htmlClass.remove("not-ready");
+    }, 10);
+
+    // dark theme
+    const setDark = (isDark) => {
+      function setTheme(theme, prevTheme, giallo) {
+        document.body.dispatchEvent(new CustomEvent("set-theme", { detail: theme }));
+        htmlClass.remove(prevTheme);
+        htmlClass.add(theme);
+        document.documentElement.style.setProperty("color-scheme", theme);
+        gialloCss.setAttribute("href", giallo);
+      }
+      if (isDark) {
+        setTheme("dark", "lght", "giallo-dark.css");
+      } else {
+        setTheme("light", "dark", "giallo-light.css");
+      }
+      localStorage.setItem("dark", isDark);
+    };
+
+    // init
+    const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if (htmlClass.contains("dark")) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem("dark");
+      setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+    }
+
+    // listen system
+    darkScheme.addEventListener("change", (event) => {
+      setDark(event.matches);
+    });
+
+    // manual switch
+    const btnDark = document.querySelector(".theme-toggle");
+    btnDark.addEventListener("click", () => {
+      setDark(localStorage.getItem("dark") !== "true");
+    });
+</script>

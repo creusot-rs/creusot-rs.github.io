@@ -4,7 +4,8 @@
 <main aria-label="Content">
   <div class="container">
     <header class="header">
-      <h1>{{ this.title | markdown | safe }}</h1>
+      <div class="squish">{% include "theme-toggle.html" %}</div>
+      <h1>{{ this.title | safe }}</h1>
     </header>
     <div class="content" itemprop="articleBody" id="content">
       {% for year, group in this.pages | sort(attribute="date") | reverse |  group_by(attribute="year") %}

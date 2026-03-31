@@ -15,5 +15,4 @@ extra_grammars = ["grammars/rust.json", "grammars/pearlite.json"]
 [extra]
 favicon = true
 logo = "creusot-logo.jpg"
-footer_text = "This website is built using [Zola](https://www.getzola.org) with a theme based on [Academic Paper](http://github.com/aterenin/academic-paper/)."
 version = "0.10.0"

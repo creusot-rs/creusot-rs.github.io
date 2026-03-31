@@ -32,7 +32,6 @@
     <body>
       {% block main %}{% endblock main %}
       {% block footer %}
-        {% if config.extra.footer_text %}
           <footer class="footer">
 <p>
   <a href="https://github.com/creusot-rs/creusot-rs.github.io">Source code</a>.
@@ -40,7 +39,6 @@
   with a theme based on <a href="http://github.com/aterenin/academic-paper/">Academic Paper</a>.
 </p>
           </footer>
-        {% endif %}
       {% endblock %}
     </body>
 

@@ -17,6 +17,8 @@ large_card = false
 
 # Contracts for Rust, formally proved
 
+Creusot is a deductive verifier for the Rust programming language.
+
 Creusot helps you verify that your code is free of errors—panics, overflows, undefined behaviors,
 *etc.*—by proving that it conforms to a formal specification.
 

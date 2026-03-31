@@ -34,7 +34,11 @@
       {% block footer %}
         {% if config.extra.footer_text %}
           <footer class="footer">
-            {{ config.extra.footer_text | markdown | safe }}
+<p>
+  <a href="https://github.com/creusot-rs/creusot-rs.github.io">Source code</a>.
+  This website is built using <a href="https://www.getzola.org">Zola</a>
+  with a theme based on <a href="http://github.com/aterenin/academic-paper/">Academic Paper</a>.
+</p>
           </footer>
         {% endif %}
       {% endblock %}

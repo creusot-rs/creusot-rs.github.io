@@ -25,7 +25,7 @@ Creusot helps you verify that your code is free of errors—panics, overflows, u
 Deductive verification provides high confidence in the correctness of your programs
 by connecting code to specifications with mathematically rigorous proofs.
 
-In Creusot, you will find the true meaning of "*if it compiles, it works*."
+With Creusot, you will find the true meaning of "*if it compiles, it works*."
 
 # Features & Examples
 

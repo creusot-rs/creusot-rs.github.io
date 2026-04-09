@@ -1,6 +1,7 @@
 +++
 title = "Creusot"
 [extra]
+meta_title = "Creusot: The Rust Verifier"
 authors = [{ name = "Developed at Laboratoire Méthodes Formelles", url = "https://lmf.cnrs.fr/" }]
 venue = { name = "wat" }
 buttons = [

@@ -15,7 +15,7 @@
             <link rel="shortcut icon" type="image/x-icon" href="{{ get_url(path = 'favicon.ico') }}">
             {# <link rel="apple-touch-icon" href="{{ get_url(path = 'apple-touch-icon.png') }}" type="image/png"> #}
         {% endif %}
-        <title>{{ this.title }}</title>
+        <title>{{ this.extra.meta_title | default(value = this.title) | striptags }}</title>
         <meta property="og:title" content="{{ this.title }}">
         {% set description = page.description | default(value = config.description) %}
         <meta name="description" content="{{ description }}">

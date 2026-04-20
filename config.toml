@@ -15,4 +15,4 @@ extra_grammars = ["grammars/rust.json", "grammars/pearlite.json"]
 [extra]
 favicon = true
 logo = "creusot-logo.jpg"
-version = "0.10.0"
+version = "0.11.0"

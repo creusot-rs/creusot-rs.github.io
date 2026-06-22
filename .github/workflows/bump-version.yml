@@ -21,5 +21,5 @@ jobs:
     - name: Push
       if: env.push
       run: |
-        git -c user.name="${{ vars.AUTHOR }}" -c user.email="${{ vars.EMAIL }}" commit config.toml -m "chore: Bump project version to ${{ env.creusot_version }}"
+        git -c user.name="${{ vars.AUTHOR }}" -c user.email="${{ vars.EMAIL }}" commit config.toml -m "Bump version to ${{ env.creusot_version }}"
         git push https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}

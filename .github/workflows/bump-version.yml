@@ -23,3 +23,8 @@ jobs:
       run: |
         git -c user.name="${{ vars.AUTHOR }}" -c user.email="${{ vars.EMAIL }}" commit config.toml -m "Bump version to ${{ env.creusot_version }}"
         git push https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
+    - name: Trigger publish workflow
+      if: env.push
+      run: gh workflow run publish.yml
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}

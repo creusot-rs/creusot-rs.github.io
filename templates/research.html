@@ -16,7 +16,7 @@
             <h3>{{ article.title }}</h3>
             <div class="article-body">
               <div class="article-authors">by {% for author in article.authors %}
-                {{ author }}{% if not loop.last %}, {% endif %}
+                {{ author }},
               {% endfor %}
               {% if article.extra.venue %}in {{ article.extra.venue }}{% endif %}
               </div>
